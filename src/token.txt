@@ -1,0 +1,20 @@
+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
+
+
+
+
+    <nav class="navbar" >
+      <div class="max-width" style="padding-left: 20px;">
+     
+              <div class="logo" style="display: flex;align-items: center;"><a href="./artists.html">Warehouse<span>Management</span></a>
+              </div>
+          <ul class="menu" style="margin-left: -10vh;">
+            <li><a href="mainPage.html">Home</a></li>
+            <li><a href="allLogs.html">All Logs</a></li>
+            <li><a href="expiringMedicines.html">Expiring Medicines</a></li>
+            <li><a href="stockIndicator.html">Current Stock</a></li>
+          </ul>
+          <div class="menu-btn">
+          </div>
+      </div>
+  </nav>

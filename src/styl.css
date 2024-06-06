@@ -1,0 +1,350 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+li{
+
+  padding: 0vh 6vh 0vh 0vh ;
+}
+
+
+.site-logo {
+  font-weight: 900;
+  font-size: 0.8rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+header {
+  --text: #f4f4f4;
+  --text-inverse: #333;
+  --background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 3em;
+  transition: background 250ms ease-in;
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav__link {
+  --spacing: 1em;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  padding: calc(var(--spacing) / 2) var(--spacing);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.nav__link:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: var(--spacing);
+  right: var(--spacing);
+  height: 2px;
+  background: currentColor;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  transition: -webkit-transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+}
+
+.nav__link:hover::after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.nav__link--btn {
+  border: 1.5px solid currentColor;
+  border-radius: 2em;
+  margin-left: 1em;
+  transition: background 250ms ease-in-out;
+  letter-spacing: 1px;
+  padding: 0.75em 1.5em;
+}
+
+.nav__link--btn:hover {
+  background: var(--text);
+  color: var(--text-inverse);
+  border-color: var(--text);
+}
+
+.nav__link--btn::after {
+  display: none;
+}
+
+.nav__link--btn--highlight {
+  background: limegreen;
+  border-color: limegreen;
+  color: #333;
+}
+
+.nav__link--btn--highlight:hover {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+/* .nav-scrolled {
+  --text: #333;
+  --text-inverse: #f4f4f4;
+  --background:#010101 ;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  top: 0;
+  margin-top: 0px;
+  width: 100%;
+  height: 8%;
+  z-index: 999;
+  padding: 5px 0;
+  font-family: 'Ubuntu', sans-serif;
+  /* transition: all 0.3s ease; 
+  background-color: #010101;
+  margin-left: 45px;
+
+
+} */
+
+.home-intro {
+  padding: 50vh 0;
+  background: rgb(89, 121, 154) url(https://uploads-ssl.webflow.com/60edc0a8835d5b38bf11f03f/61cf04ea45898934315251e5_Inventory-management-system-objectives.png) no-repeat center center fixed;
+  background-size: cover;
+  /* background-blend-mode: multiply; */
+  color: white;
+  text-align: center;
+}
+
+.home-about {
+  padding: 4em 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.columns {
+  display: flex;
+}
+
+.col + .col {
+  margin-left: 1.5em;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 250ms ease-in;
+}
+
+.fade-in.appear {
+  opacity: 1;
+}
+
+.more-stuff-grid {
+  background: gray;
+  padding: 0vh 0vh 0vh 0vh;
+  height: 60vh;
+  display: grid;
+  grid-gap: 2em;
+  align-items: center;
+  grid-template-columns: minmax(1em, 1fr) repeat(2, minmax(200px, 400px)) minmax(
+      1em,
+      1fr
+    );
+}
+
+.from-left {
+  grid-column: 2 / 3;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin-left: -20vh;
+}
+
+.from-right {
+  grid-column: 3 / 4;
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+
+  margin-right: -30vh;
+}
+
+.from-left,
+.from-right {
+  transition: opacity 250ms ease-in, -webkit-transform 400ms ease-in;
+  transition: opacity 250ms ease-in, transform 400ms ease-in;
+  transition: opacity 250ms ease-in, transform 400ms ease-in,
+    -webkit-transform 400ms ease-in;
+  opacity: 0;
+}
+
+.from-left.appear,
+.from-right.appear {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1;
+}
+
+p{
+  /* font-family: sans-serif; */
+  font-weight: 500;
+  font-size: 2.8vh;
+}
+
+
+
+
+
+/* --------------------------------------------------------------------__ */
+
+.center {
+  transform: scale(1.5);
+  height: 58vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-card {
+  width: 350px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 300ms;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.article-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-card .content {
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  padding: 30px 20px 20px 20px;
+  height: auto;
+  bottom: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+}
+
+.article-card .date,
+.article-card .title {
+  margin: 0;
+}
+
+.article-card .date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.article-card .title {
+  font-size: 17px;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+.navbar{
+  position: fixed;
+  display: block;
+  --text: #333;
+  --text-inverse: #f4f4f4;
+  top: 0;
+  margin-top: 0px;
+  width: 100%;
+  height: 8%;
+  z-index: 999;
+  padding: 5px 0;
+  font-family: 'Ubuntu', sans-serif;
+  /* transition: all 0.3s ease; */
+  background-color: #010101;
+  margin-left: -48px;
+}
+
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo a{
+  color: #fffafa;
+  font-size: 35px;
+  font-weight: 600;
+}
+.navbar .logo a span{
+  color: #0077b5;
+  transition: all 0.3s ease;
+}
+.navbar.sticky .logo a span{
+  color: #f8f1f1;
+}
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+
+.navbar .menu li a {
+display: block;
+color: #f1eded;
+font-size: 18px;
+font-weight: 500;
+margin-left: 25px;
+transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar .menu li a:hover {
+transform: scale(1.2);
+color: #0077b5;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
+table,th,td{
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 20px;
+}
+
+#text{
+
+  font-size: 4vh;
+}

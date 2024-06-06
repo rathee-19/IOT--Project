@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html style="user-select: none;">
+    <head>
+        <title>Expiring Medicines</title>
+        <link rel="stylesheet" href="styl.css">
+        <!-- <style>
+
+.navbar{
+  position: fixed;
+  top: 0;
+  margin-top: 0px;
+  width: 100%;
+  height: 8%;
+  z-index: 999;
+  padding: 10px 0;
+  font-family: 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+  background-color: #010101;
+  margin-left: -2vh;
+}
+
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo a{
+  color: #fffafa;
+  font-size: 35px;
+  font-weight: 600;
+}
+.navbar .logo a span{
+  color: #0077b5;
+  transition: all 0.3s ease;
+}
+.navbar.sticky .logo a span{
+  color: #f8f1f1;
+}
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+/* .navbar.fixed {
+  padding: 15px 0;
+  background: crimson;
+} */
+/* .navbar .menu li a{
+  display: block;
+  color: #f1eded;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 25px;
+  transition: color 0.5s ease;
+} */
+.navbar .menu li a {
+display: block;
+color: #f1eded;
+font-size: 18px;
+font-weight: 500;
+margin-left: 25px;
+transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar .menu li a:hover {
+transform: scale(1.2);
+color: #0077b5;
+}
+
+        </style> -->
+    </head>
+
+    <body>
+        <header>
+        <nav class="navbar" >
+            <div class="max-width" style="padding-left: 20px;">
+           
+                    <div class="logo" style="display: flex;align-items: center;"><a href="./mainPage.html">Warehouse<span>Management</span></a>
+                    </div>
+                <ul class="menu" style="margin-left: -10vh;">
+                    <li><a href="./search.html">Search</a></li>
+
+                  <li><a href="mainPage.html">Home</a></li>
+                  <li><a href="allLogs.html">All Logs</a></li>
+                  <li><a href="expiringMedicines.html">Expiring Medicines</a></li>
+                  <li><a href="stockIndicator.html">Current Stock</a></li>
+                </ul>
+                <div class="menu-btn">
+                </div>
+            </div>
+        </nav>
+    </header>
+        
+        
+        <div style = "text-align: center; align-items: center; margin-top: 15vh;">
+            <h1 style = "text-align: center;">Medicines Expiring within 2 Months</h1>
+            <hr style = "width: 75%;"/>
+            <div id = "logData" style = "align-items: center; text-align: center;"></div>
+        </div>
+
+            <br/><br/>
+        <div style = "align-items: center; text-align: center;">
+            <a href = "mainPage.html">
+                <button>Back to Home? </button>
+            </a>
+        </div>
+
+        <script>
+            const dataDiv = document.getElementById('logData');
+
+            getAllData();
+            setInterval(getAllData, 1000);
+
+            function getAllData() {
+                fetch('https://api.thingspeak.com/channels/2165298/feeds.json?api_key=69WLS5P3MGHZP2G9&results=1')
+                    .then(response => response.json())
+                    .then(data => {
+                    let allTags = data['feeds'][0]['field7'];
+                    if(allTags === ''){
+                        database.innerHTML = "There are no medicines in the database";
+                        return;
+                    }
+                    let IDs = allTags.split(',');
+                    console.log(IDs);
+
+                    let exists = false;
+
+                    fetch('https://api.thingspeak.com/channels/2165298/feeds.json?api_key=69WLS5P3MGHZP2G9')
+                        .then(response => response.json())
+                        .then(data => {
+                        let htmlCode = '<table>';
+                            htmlCode += '<tr>';
+                            htmlCode += '<th>Id</th>';
+                            htmlCode += '<th>ProductName</th>';
+                            htmlCode += '<th>Expiry Date</th>';
+                            htmlCode += '<th>Detection Time</th>'
+                            htmlCode += '<th>Product Count</th>';
+                            htmlCode += '<th>Expiry Status</th>';
+                            htmlCode += '</tr>';
+                            const date = new Date();
+
+                            let day = parseInt(date.getDate());
+                            let month = parseInt(date.getMonth() + 1);
+                            let year = parseInt(date.getFullYear());
+
+                        IDs.forEach(id => {
+                            for(let i = data['feeds'].length - 1; i>= 0; i--){
+                            if(data['feeds'][i]['field1'] === id){
+                                let expired = false;
+
+                                let expiryData = data['feeds'][i]['field3'];
+                                let expData = expiryData.split('-');
+
+                                if(expData[0] <= year){
+                                    if(expData[0] < year){
+                                        expired = true;
+                                    } else if (expData[1] < month){
+                                        expired = true;
+                                    } else if(expData[1] == month && expData[2] <= day){
+                                        expired = true;
+                                    }
+                                }
+                                
+                                let shouldDisplay = expired;
+                                let timeLeft;
+                                if (!expired){
+                                    if(expData[0] > year){
+                                        timeLeft = `${expData[0] - year} year(s) left`;
+                                    } else if(expData[1] > month) {
+                                        timeLeft = `${expData[1] - month} month(s) left`;
+                                        if(expData[1] - month <= 2){
+                                            shouldDisplay = true;
+                                        }
+                                    } else {
+                                        timeLeft = `${expData[2] - day} day(s) left`;
+                                        shouldDisplay = true;
+                                    }
+                                }
+                                      
+
+                                if(shouldDisplay){
+                                    exists = true;
+                                    htmlCode += `<tr>`;
+                                    htmlCode += `<td>${data['feeds'][i]['field1']}</td>`;
+                                    htmlCode += `<td>${data['feeds'][i]['field2']}</td>`;
+                                    htmlCode += `<td>${data['feeds'][i]['field3']}</td>`;
+                                    htmlCode += `<td>${data['feeds'][i]['field4']}</td>`;
+                                    htmlCode += `<td>${data['feeds'][i]['field5']}</td>`;
+                                    let timeLeft;
+                                    if (!expired){
+                                        if(expData[0] > year){
+                                            timeLeft = `${expData[0] - year} year(s) left`;
+                                        } else if(expData[1] > month) {
+                                            timeLeft = `${expData[1] - month} month(s) left`;
+                                        } else {
+                                            timeLeft = `${expData[2] - day} day(s) left`;
+                                        }
+                                    }
+                                    
+                                    if(expired){
+                                    htmlCode += `<td>EXPIRED</td>`;
+                                    } else {
+                                    htmlCode += `<td>${timeLeft}</td>`;
+                                    }      
+                                    htmlCode += `</tr>`;  
+                                    break;
+                                }
+                                }
+                            }
+                        });
+                        if(exists){
+                            htmlCode += `</table>`;
+                            dataDiv.innerHTML = htmlCode;
+                        } else {
+                            dataDiv.innerHTML = "There are no medicines expiring within 2 months in the database";
+                        }
+                        });
+                    });
+            }
+        </script>
+    </body>
+</html>

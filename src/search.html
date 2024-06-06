@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Search medicines </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./search.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="./main.css"> -->
+  <!-- <link rel="stylesheet" href="./navbar.css"> -->
+  <!-- <link rel="stylesheet" href="./footer.css"> -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+</head>
+
+<body>
+  <!-- <video id="video-background" autoplay muted loop>
+    <source src="./dog.mp4" type="video/mp4">
+    <source src="./dog.mp4" type="video/webm">
+     Your browser does not support the video tag.
+  </video>  -->
+  <nav class="navbar">
+    <div class="max-width" style="padding-left: 20px;">
+
+      <div class="logo" style="display: flex;align-items: center;"><a
+          href="./main.html">Warehouse<span>Management</span></a>
+      </div>
+      <ul class="menu" style="margin-left: 20vh;">
+        <li><a href="./search.html">Search</a></li>
+        <li><a href="./mainPage.html">Home</a></li>
+        <li><a href="allLogs.html">All Logs</a></li>
+        <li><a href="expiringMedicines.html">Expiring Medicines</a></li>
+        <li><a href="stockIndicator.html">Current Stock</a></li>
+      </ul>
+      <div class="menu-btn">
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div id="search_bar">
+      <div class="container">
+        <form role="search" class="search-form form" id="search_form">
+          <label for="search"></label>
+          <input type="search" id="search_input" name="term">
+          <input type="submit" class="search-submit button" value="&#xf002" />
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- <div id="medName"></div> -->
+
+
+<div style="margin-top: -70vh; color: aliceblue;" id="showData"></div>
+   <!-- <div id="noData">  </div> -->
+  <script src="index.js"></script>
+</body>
+<script>
+  let dataDiv = document.getElementById('showData');
+
+  // let medDiv = document.getElementById('medName');
+
+  document.getElementById("search_form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const searchTerm = document.getElementById("search_input").value;
+    console.log("Search term:", searchTerm);
+    getAllData(searchTerm);
+  });
+    
+
+  // getAllData();
+  // // setInterval(getAllData, 1000);
+  
+
+        function getAllData(searchTerm) {
+          var count =0;
+    fetch('https://api.thingspeak.com/channels/2165298/feeds.json?api_key=69WLS5P3MGHZP2G9')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      
+    var isMatch = false;
+        // for (let i = data['feeds'].length - 1; i >= 0; i--) {
+        //   // console.log(data['feeds'][i]['field2']);
+        //   if (data['feeds'][i]['field2'] != searchTerm) {
+        //     console.log('NO match');
+        //     htmlCode += `<tr>`;
+        //     htmlCode += `<th colspan="6">NO match</th>`;
+        //     htmlCode += `</tr>`;
+        //   }
+        // }
+
+        let htmlCode = '<table style = "width: 70%">';
+        htmlCode += '<tr>';
+        htmlCode += '<th>Id</th>';
+        htmlCode += '<th>ProductName</th>';
+        htmlCode += '<th>Expiry Date</th>';
+        htmlCode += '<th>Detection Time</th>'
+        // htmlCode += '<th>Product Count</th>';
+        htmlCode += '<th>status</th>';
+        htmlCode += '</tr>';
+
+        for (let i = data['feeds'].length - 1; i >= 0; i--) {
+          // console.log(data['feeds'][i]['field2']);
+          if (data['feeds'][i]['field2'] === searchTerm) {
+            console.log('match');
+             isMatch = true;
+            //  count+=1;
+             htmlCode += `<tr>`;
+              htmlCode += `<td>${data['feeds'][i]['field1']}</td>`;
+              htmlCode += `<td>${data['feeds'][i]['field2']}</td>`;
+              htmlCode += `<td>${data['feeds'][i]['field3']}</td>`;
+              htmlCode += `<td>${data['feeds'][i]['field4']}</td>`;
+              // htmlCode += `<td>${data['feeds'][i]['field5']}</td>`;
+              htmlCode += `<td>${data['feeds'][i]['field6']}</td>`;
+              htmlCode += `</tr>`;
+              if(data['feeds'][i]['field6'] === 'IN' ){
+              count+=1;
+
+              }
+              if(data['feeds'][i]['field6'] === 'OUT' ){
+              count-=1;
+
+              }
+              
+
+          }
+
+          
+
+
+        }
+        if( isMatch === false){
+          console.log('NO match');
+            htmlCode += `<tr>`;
+            htmlCode += `<th colspan="6">NO match</th>`;
+            htmlCode += `</tr>`;
+
+        }
+       
+        
+  
+        // htmlCode += `<p>Total count: ${count}`
+        htmlCode += `</table>`;
+        console.log(htmlCode);
+        dataDiv.innerHTML = htmlCode;
+      });
+  }
+</script>
+
+
+</html>

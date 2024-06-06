@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Warehouse</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styl.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="max-width" style="padding-left: 20px;">
+
+                <div class="logo" style="display: flex;align-items: center;"><a
+                        href="./main.html">Warehouse<span>Management</span></a>
+                </div>
+                <ul class="menu" style="margin-left: 20vh;">
+                    <li><a href="./search.html">Search</a></li>
+
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="allLogs.html">All Logs</a></li>
+                    <li><a href="expiringMedicines.html">Expiring Medicines</a></li>
+                    <li><a href="stockIndicator.html">Current Stock</a></li>
+                </ul>
+                <div class="menu-btn">
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <section class="home-intro">
+            <h1>IOT &nbsp; project</h1>
+        </section>
+
+        <div class="home-about">
+            <h2>About us</h2>
+            <p>This is our IOT project for Hospital warehouse management</p>
+            <div class="columns">
+                <div class="col fade-in">
+
+                    <p>
+                        The project uses IoT technology to efficiently manage and track the inventory of
+                        medical supplies, equipment, and medications in hospitals. By automating inventory
+                        management, asset tracking and temperature management, we can ensure that we
+                        provide the best possible care with minimal human error. The data collected by the
+                        sensors can be used to monitor the inventory levels, location, usage and
+                        maintenance of medical supplies and equipment, as well as ensure that they are
+                        stored at the correct temperature and humidity levels
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="home-more-stuff">
+
+            <div class="more-stuff-grid">
+                <div style="display: flex; height: 50vh;width: 130vh; border: 1px solid black; border-radius: 20px;
+                /* background-image: url(https://previews.123rf.com/images/julialemba/julialemba1805/julialemba180500042/102515911-seamless-vector-pattern-of-meteorology-thermometers-on-dark-background-measuring-hot-and-cold.jpg); */
+                background-color: #3C3C3C;
+                "
+                    class="slide-in from-left">
+                    <div style="flex: 1; margin-top: 2vh;">
+
+                        <iframe width="550" height="360"
+                            style="border: 1px solid #cccccc;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                            src="https://thingspeak.com/channels/2164612/charts/1?title=Temperature&api_key=RIIZQ5ASPM8VOOWI&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=2"></iframe>
+                    </div>
+                    <div style="flex: 1; margin-left: 0vh;margin-top: -5vh;">
+                        <div class="center">
+                                <div class="article-card">
+                                <div class="content">
+                                    <p id="text" class="date">Temperature sensor value</p>
+                                    <p id="text" class="title"> <span id="tempVal"></span></p>
+                                </div>
+                                <img src="https://previews.123rf.com/images/julialemba/julialemba1805/julialemba180500042/102515911-seamless-vector-pattern-of-meteorology-thermometers-on-dark-background-measuring-hot-and-cold.jpg" alt="article-cover" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="more-stuff-grid">
+            <div style="display: flex; height: 50vh;width: 130vh;margin-top: 0vh; margin-left: -70vh; border: 1px solid black;border-radius: 20px;background-color: #3C3C3C;" class="slide-in from-right">
+                <div style="flex: 1; margin-top: 2vh;">
+
+                    <iframe width="550" height="360"
+                        style="border: 1px solid #cccccc;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                        src="https://thingspeak.com/channels/2164612/charts/2?title=Humidity&api_key=RIIZQ5ASPM8VOOWI&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=2"></iframe>                </div>
+                <div style="flex: 1; margin-left: 0vh;margin-top: -5vh;">
+                    <div class="center">
+                        <div class="article-card">
+                            <div class="content">
+                                <p id="text" class="date">Humidity sensor value</p>
+                                <p id="text" class="title"> <span id = "humidSpan"></span></p>
+                            </div>
+                            <img src="https://thumbs.dreamstime.com/b/line-water-drop-percentage-icon-isolated-seamless-pattern-black-background-humidity-analysis-vector-268168503.jpg" alt="article-cover" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="more-stuff-grid">
+            <div style="display: flex; height: 50vh;width: 130vh;margin-top: 0vh; border: 1px solid black; border-radius: 20px; background-color: #3C3C3C; " class="slide-in from-left">
+                <div style="flex: 1; margin-top: 2vh;">
+
+                    <iframe width="550" height="360"
+                        style="border: 1px solid #cccccc;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                        src="https://thingspeak.com/channels/2166565/charts/1?api_key=R4AU0SXHFSLN707I&bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>                </div>
+                <div style="flex: 1; margin-left: 0vh;margin-top: -5vh;">
+                    <div class="center">
+                        <div class="article-card">
+                            <div class="content">
+                                <h2 id="text" style="margin-top: 20vh ;" class="date"> Air stauts</h2>
+                                <h2 id="text" class="title"> <span id = "gasSpan"></span></h2>
+                            </div>
+                            <img src="https://w0.peakpx.com/wallpaper/702/106/HD-wallpaper-natural-gas-neon-icon-blue-background-neon-symbols-natural-gas-neon-icons-natural-gas-sign-ecology-signs-natural-gas-icon-ecology-icons.jpg" alt="article-cover" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        
+
+        
+        <div style="text-align: center; align-items: center">
+            <h3 style="text-align: center;text-decoration: underline;">ALL MEDICINES</h3>
+            <div style="margin-bottom: 10vh;" id="database" style="align-items: center; text-align: center;"></div>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5"></script>
+    <script>
+        // var dict = {"1a619e1a": {"name": "Med1", "expiryDate": "1"},"f36afa03": {"name": "Med2", "expiryDate": "2"},"63ece805": {"name": "Med3","expiryDate": "3"},"7a259b1a":{"name": "Med4","expiryDate": "4"}};
+        const tempSpan = document.getElementById('tempVal');
+        const humidSpan = document.getElementById('humidSpan');
+        const gasSpan = document.getElementById('gasSpan');
+        const database = document.getElementById('database');
+
+        getTempAndHumidity();
+        getRFIDdata();
+        getGasData();
+        setInterval(getTempAndHumidity, 1000);
+        setInterval(getRFIDdata, 1000);
+        setInterval(getTempAndHumidity, 1000);
+        setInterval(getGasData, 1000);
+
+        function getTempAndHumidity() {
+            fetch('https://api.thingspeak.com/channels/2164612/feeds.json?api_key=I6DNWJI3332I6HM6&results=1')
+                .then(response => response.json())
+                .then(data => {
+                    let temp = data['feeds'][0]['field1'];
+                    let humidity = data['feeds'][0]['field2'];
+                    let motionStatus = parseInt(data['feeds'][0]['field3']);
+
+                    if (temp < 0) {
+                        alert("Temperature is too low!");
+                    } else if (temp > 45) {
+                        alert("Temperature is too high!");
+                    }
+
+                    temp = parseFloat(temp).toFixed(2); //returns a string
+                    humidity = parseFloat(humidity).toFixed(2);
+
+                    tempSpan.innerHTML = `${temp} °C`;
+                    humidSpan.innerHTML = `${humidity} %`;
+
+                    if (motionStatus === 2) {
+                        alert("The expensive asset has moved");
+                    }
+                });
+        }
+
+
+        function getRFIDdata() {
+            fetch('https://api.thingspeak.com/channels/2165298/feeds.json?api_key=69WLS5P3MGHZP2G9&results=1')
+                .then(response => response.json())
+                .then(data => {
+                    let allTags = data['feeds'][0]['field7'];
+                    if (allTags === '') {
+                        database.innerHTML = "There are no medicines in the database";
+                        return;
+                    }
+                    let IDs = allTags.split(',');
+                    console.log(IDs);
+
+                    fetch('https://api.thingspeak.com/channels/2165298/feeds.json?api_key=69WLS5P3MGHZP2G9')
+                        .then(response => response.json())
+                        .then(data => {
+                            let htmlCode = '<table>';
+                            htmlCode += '<tr>';
+                            htmlCode += '<th>Id</th>';
+                            htmlCode += '<th>ProductName</th>';
+                            htmlCode += '<th>Expiry Date</th>';
+                            htmlCode += '<th>Detection Time</th>'
+                            htmlCode += '<th>Product Count</th>';
+                            htmlCode += '<th>Expiry Status</th>';
+                            htmlCode += '</tr>';
+
+                            IDs.forEach(id => {
+                                htmlCode += `<tr>`;
+                                for (let i = data['feeds'].length - 1; i >= 0; i--) {
+                                    if (data['feeds'][i]['field1'] === id) {
+                                        htmlCode += `<td>${data['feeds'][i]['field1']}</td>`;
+                                        htmlCode += `<td>${data['feeds'][i]['field2']}</td>`;
+                                        htmlCode += `<td>${data['feeds'][i]['field3']}</td>`;
+                                        htmlCode += `<td>${data['feeds'][i]['field4']}</td>`;
+                                        htmlCode += `<td>${data['feeds'][i]['field5']}</td>`;
+                                        let expired = false;
+
+                                        const date = new Date();
+
+                                        let day = parseInt(date.getDate());
+                                        let month = parseInt(date.getMonth() + 1);
+                                        let year = parseInt(date.getFullYear());
+
+                                        let expiryData = data['feeds'][i]['field3'];
+                                        let expData = expiryData.split('-');
+
+                                        if (expData[0] <= year) {
+                                            if (expData[0] < year) {
+                                                expired = true;
+                                            } else if (expData[1] < month) {
+                                                expired = true;
+                                                htmlCode += '<style>';
+                                                htmlCode += 'background-color: yellow';
+                                                htmlCode += '</style>';
+                                            } else if (expData[1] == month && expData[2] < day) {
+                                                expired = true;
+                                                htmlCode += '<style>';
+                                                htmlCode += 'background-color: green';
+                                                htmlCode += '</style>';
+                                            }
+                                        }
+
+                                        let timeLeft;
+                                        if (!expired) {
+                                            if (expData[0] > year) {
+                                                timeLeft = `${expData[0] - year} year(s) left`;
+                                            } else if (expData[1] > month) {
+                                                timeLeft = `${expData[1] - month} month(s) left`;
+                                            } else {
+                                                timeLeft = `${expData[2] - day} day(s) left`;
+                                            }
+                                        }
+
+                                        if (expired) {
+                                            htmlCode += `<td>EXPIRED</td>`;
+                                        } else {
+                                            htmlCode += `<td>${timeLeft}</td>`;
+                                        }
+                                        break;
+                                    }
+                                }
+                                htmlCode += `</tr>`;
+                            });
+
+                            htmlCode += `</table>`;
+                            database.innerHTML = htmlCode;
+                        });
+                });
+        }
+
+        function getGasData() {
+            fetch('https://api.thingspeak.com/channels/2166565/feeds.json?api_key=R4AU0SXHFSLN707I&results=1')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    let index = data['feeds'][0]['field1'];
+                    index = parseInt(index);
+
+                    let htmlCode = "";
+                    if (index <= 70) {
+                        htmlCode = "Atmosphere is clean!";
+                    } else if (index < 150) {
+                        htmlCode = "Air is slightly polluted";
+                    } else {
+                        htmlCode = "Alert! Air is polluted!";
+                    }
+
+                    gasSpan.innerHTML = htmlCode;
+
+                });
+        }
+    </script>
+
+</body>
+
+</html>

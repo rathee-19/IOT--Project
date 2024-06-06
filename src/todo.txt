@@ -1,0 +1,5 @@
+1. If there are no medicines add a case in JS - COMPLETE
+2. Put a button to show all logs - COMPLETE
+3. FINISH GAS INDEX thing
+4. Alerts (for medicines and stock -> out of stock or gonna expire (also decide how to comapre the dates))
+5. Styling
