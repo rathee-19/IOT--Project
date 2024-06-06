@@ -100,10 +100,3 @@ This IoT-based web application efficiently manages and tracks the inventory of m
 - Fetch intervals are set to 1 second for temperature, humidity, and RFID data.
 - Air quality data is fetched every 10 seconds with alerts for abnormal conditions.
 
-## Contributing
-
-Contributions are welcome! Please create a pull request or open an issue to discuss your ideas.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
